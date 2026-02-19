@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/chiply/brushup/compare/v0.1.1...v0.1.2) (2026-02-19)
+
+
+### Bug Fixes
+
+* address PR [#2](https://github.com/chiply/brushup/issues/2) review feedback ([#4](https://github.com/chiply/brushup/issues/4)) ([c8755ae](https://github.com/chiply/brushup/commit/c8755ae05035ff6d6d778c65ce123985eb8736cd))
+
 ## [0.1.1](https://github.com/chiply/brushup/compare/v0.1.0...v0.1.1) (2026-02-19)
 
 
