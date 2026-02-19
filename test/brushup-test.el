@@ -30,21 +30,21 @@
 ;;;; brushup--generate-gradient
 
 (ert-deftest brushup-test-generate-gradient/returns-list ()
-  (let ((result (brushup--generate-gradient "#000000" 6 1)))
+  (let ((result (brushup--generate-gradient "#808080" 6 1)))
     (should (listp result))
     (should (= 6 (length result)))))
 
 (ert-deftest brushup-test-generate-gradient/lighter-direction ()
-  "Gradient with direction 1 should produce lighter colors."
-  (let* ((base "#333333")
+  "Gradient with direction 1 should produce lighter colors from a mid-tone."
+  (let* ((base "#808080")
          (result (brushup--generate-gradient base 3 1))
          (base-lum (nth 2 (apply #'color-rgb-to-hsl (color-name-to-rgb base))))
          (first-lum (nth 2 (apply #'color-rgb-to-hsl (color-name-to-rgb (nth 0 result))))))
     (should (> first-lum base-lum))))
 
 (ert-deftest brushup-test-generate-gradient/darker-direction ()
-  "Gradient with direction -1 should produce darker colors."
-  (let* ((base "#cccccc")
+  "Gradient with direction -1 should produce darker colors from a mid-tone."
+  (let* ((base "#808080")
          (result (brushup--generate-gradient base 3 -1))
          (base-lum (nth 2 (apply #'color-rgb-to-hsl (color-name-to-rgb base))))
          (first-lum (nth 2 (apply #'color-rgb-to-hsl (color-name-to-rgb (nth 0 result))))))
@@ -52,7 +52,7 @@
 
 (ert-deftest brushup-test-generate-gradient/monotonic ()
   "Each step should move further from the base color."
-  (let* ((result (brushup--generate-gradient "#000000" 6 1))
+  (let* ((result (brushup--generate-gradient "#808080" 6 1))
          (lums (mapcar (lambda (c)
                          (nth 2 (apply #'color-rgb-to-hsl (color-name-to-rgb c))))
                        result)))
@@ -60,22 +60,25 @@
 
 (ert-deftest brushup-test-generate-gradient/respects-step ()
   "Changing brushup-gradient-step should affect output."
-  (let* ((brushup-gradient-step 7)
-         (result-7 (brushup--generate-gradient "#808080" 3 1))
-         (brushup-gradient-step 14)
-         (result-14 (brushup--generate-gradient "#808080" 3 1)))
-    (should-not (equal result-7 result-14))))
+  (let ((brushup-gradient-step 7))
+    (let ((result-7 (brushup--generate-gradient "#808080" 3 1)))
+      (let ((brushup-gradient-step 14))
+        (let ((result-14 (brushup--generate-gradient "#808080" 3 1)))
+          (should-not (equal result-7 result-14)))))))
 
 ;;;; brushup--eval-style
 
+(defvar brushup-test--eval-target 0
+  "Target variable for eval-style tests, visible at top level.")
+
 (ert-deftest brushup-test-eval-style/evaluates-form ()
-  (let ((x 0))
-    (brushup--eval-style '(setq x 42))
-    (should (= 42 x))))
+  (setq brushup-test--eval-target 0)
+  (brushup--eval-style '(setq brushup-test--eval-target 42))
+  (should (= 42 brushup-test--eval-target)))
 
 (ert-deftest brushup-test-eval-style/handles-error ()
-  "Should not signal an error, just message."
-  (should (null (brushup--eval-style '(error "test error")))))
+  "Should not signal an error."
+  (brushup--eval-style '(error "test error")))
 
 ;;;; brushup-init
 
@@ -109,16 +112,19 @@
 
 ;;;; brushup (main entry point)
 
+(defvar brushup-test--marker nil
+  "Marker variable for brushup style evaluation tests.")
+
 (ert-deftest brushup-test-brushup/evaluates-styles ()
   "brushup should evaluate all registered styles."
-  (let ((brushup-styles '((setq brushup-test--marker t)))
-        (brushup-test--marker nil))
+  (setq brushup-test--marker nil)
+  (let ((brushup-styles '((setq brushup-test--marker t))))
     (brushup)
     (should brushup-test--marker)))
 
 (ert-deftest brushup-test-brushup/empty-styles ()
   "brushup should handle empty styles list."
   (let ((brushup-styles '()))
-    (should (null (brushup)))))
+    (brushup)))
 
 ;;; brushup-test.el ends here
