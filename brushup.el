@@ -197,9 +197,10 @@ Re-initializes the palette and evaluates all registered styles."
 
 ;;;; use-package integration
 
-(defalias 'use-package-handler/:brushup 'use-package-handle-forms)
-(defalias 'use-package-normalize/:brushup 'use-package-normalize-forms)
-(add-to-list 'use-package-keywords :brushup t)
+(with-eval-after-load 'use-package-core
+  (defalias 'use-package-handler/:brushup 'use-package-handle-forms)
+  (defalias 'use-package-normalize/:brushup 'use-package-normalize-forms)
+  (add-to-list 'use-package-keywords :brushup t))
 
 ;;;; Hooks
 
