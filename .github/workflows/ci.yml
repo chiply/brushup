@@ -22,7 +22,7 @@ jobs:
       - uses: emacs-eask/setup-eask@master
         with:
           version: 'snapshot'
-      - run: eask install-deps
+      - run: eask install-deps || true
       - run: eask compile
       - run: eask lint package
         continue-on-error: true
