@@ -5,7 +5,9 @@
 ;; Author: Charlie Holland <mister.chiply@gmail.com>
 ;; Maintainer: Charlie Holland <mister.chiply@gmail.com>
 ;; URL: https://github.com/chiply/brushup
+;; x-release-please-start-version
 ;; Version: 0.1.0
+;; x-release-please-end
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: faces, themes
 
