@@ -105,8 +105,8 @@
   (should (= 42 brushup-test--eval-target)))
 
 (ert-deftest brushup-test-eval-style/handles-error ()
-  "Should not signal an error."
-  (brushup--eval-style '(error "test error")))
+  "Should not signal; returns the message string from condition-case."
+  (should (stringp (brushup--eval-style '(error "test error")))))
 
 ;;;; brushup-init
 
