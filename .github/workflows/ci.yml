@@ -51,8 +51,8 @@ jobs:
       - name: Install dependencies
         shell: bash
         run: |
-          eask install-deps; rc=$?
-          [ $rc -eq 0 ] || [ $rc -eq 2 ] || exit $rc  # exit 2 = no deps to install
+          rc=0; eask install-deps || rc=$?
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 2 ]; then exit $rc; fi  # 2 = no deps
 
       - name: Byte compile
         run: eask compile
@@ -86,8 +86,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          eask install-deps; rc=$?
-          [ $rc -eq 0 ] || [ $rc -eq 2 ] || exit $rc  # exit 2 = no deps to install
+          rc=0; eask install-deps || rc=$?
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 2 ]; then exit $rc; fi  # 2 = no deps
 
       - name: Package lint
         run: eask lint package
