@@ -187,7 +187,8 @@ Re-initializes the palette and evaluates all registered styles."
       (set-face-attribute 'font-lock-doc-face nil
                           :foreground comment-color :slant 'normal))
     (set-face-attribute 'font-lock-string-face nil :slant 'normal)
-    (set-face-attribute 'sh-heredoc nil :foreground brushup-fg :weight 'normal)
+    (when (facep 'sh-heredoc)
+      (set-face-attribute 'sh-heredoc nil :foreground brushup-fg :weight 'normal))
     (set-face-attribute 'button nil
                         :foreground brushup-fg :background brushup-bg
                         :box nil :underline t)
@@ -211,7 +212,12 @@ Re-initializes the palette and evaluates all registered styles."
 ;;;; use-package integration
 
 (with-eval-after-load 'use-package-core
-  (defalias 'use-package-handler/:brushup 'use-package-handle-forms)
+  (defun use-package-handler/:brushup (name _keyword arg rest state)
+    "Handler for the `:brushup' use-package keyword.
+NAME, ARG, REST, and STATE are as required by `use-package'."
+    (use-package-concat
+     (use-package-process-keywords name rest state)
+     arg))
   (defalias 'use-package-normalize/:brushup 'use-package-normalize-forms)
   (add-to-list 'use-package-keywords :brushup t))
 
