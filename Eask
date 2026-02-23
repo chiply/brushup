@@ -11,4 +11,7 @@
 (source "gnu")
 (source "melpa")
 (depends-on "emacs" "29.1")
-(development (depends-on "package-lint"))
+(development
+ (depends-on "package-lint")
+ (depends-on "elisp-lint")
+ (depends-on "relint"))
