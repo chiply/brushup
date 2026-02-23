@@ -1,7 +1,7 @@
 ; -*- lexical-binding: t -*-
 
 ; x-release-please-start-version
-(package "brushup" "0.1.3" "Dynamic theme-aware color palette")
+(package "brushup" "0.1.4" "Dynamic theme-aware color palette")
 ; x-release-please-end
 (website-url "https://github.com/chiply/brushup")
 (keywords "faces" "themes")

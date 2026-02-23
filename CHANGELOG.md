@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4](https://github.com/chiply/brushup/compare/v0.1.3...v0.1.4) (2026-02-23)
+
+
+### Bug Fixes
+
+* only normalize italic/oblique faces, not all faces ([b125895](https://github.com/chiply/brushup/commit/b125895e3a5d03a12cdb460515bb5cb5981df90d))
+* use-package :brushup handler and sh-heredoc face guard ([84c18e4](https://github.com/chiply/brushup/commit/84c18e465de45178f4f05d0f0b7b3402dddf471b))
+
 ## [0.1.3](https://github.com/chiply/brushup/compare/v0.1.2...v0.1.3) (2026-02-23)
 
 
