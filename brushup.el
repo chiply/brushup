@@ -42,8 +42,10 @@
 
 ;;;; Configuration
 
-(defvar brushup-gradient-step 7
-  "Percentage step for each gradient level.")
+(defcustom brushup-gradient-step 7
+  "Percentage step for each gradient level."
+  :type 'integer
+  :group 'brushup)
 
 ;;;; Palette variables
 
@@ -223,8 +225,12 @@ NAME, ARG, REST, and STATE are as required by `use-package'."
 
 ;;;; Hooks
 
+(defun brushup--on-theme-change (_theme)
+  "Re-apply brushup when the Emacs theme changes."
+  (brushup))
+
 (add-hook 'emacs-startup-hook #'brushup)
-(add-hook 'enable-theme-functions (lambda (_theme) (brushup)))
+(add-hook 'enable-theme-functions #'brushup--on-theme-change)
 
 (provide 'brushup)
 
