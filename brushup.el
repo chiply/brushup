@@ -37,6 +37,7 @@
 
 ;;; Code:
 
+(require 'cl-lib)
 (require 'color)
 
 ;;;; Configuration
@@ -51,21 +52,33 @@
 (defvar brushup-bg "#000000" "Theme background color.")
 
 ;; Foreground gradient (1=slight, 6=strong shift toward bg)
-(defvar brushup-fg-1 "#e6e6e6")
-(defvar brushup-fg-2 "#cccccc")
-(defvar brushup-fg-3 "#b3b3b3")
-(defvar brushup-fg-4 "#999999")
-(defvar brushup-fg-5 "#808080")
-(defvar brushup-fg-6 "#666666")
+(defvar brushup-fg-1 "#e6e6e6"
+  "Foreground gradient level 1 (shifted toward background).")
+(defvar brushup-fg-2 "#cccccc"
+  "Foreground gradient level 2 (shifted toward background).")
+(defvar brushup-fg-3 "#b3b3b3"
+  "Foreground gradient level 3 (shifted toward background).")
+(defvar brushup-fg-4 "#999999"
+  "Foreground gradient level 4 (shifted toward background).")
+(defvar brushup-fg-5 "#808080"
+  "Foreground gradient level 5 (shifted toward background).")
+(defvar brushup-fg-6 "#666666"
+  "Foreground gradient level 6 (shifted toward background).")
 
 ;; Background gradient (1=slight, 6=strong shift toward fg)
-(defvar brushup-bg-1 "#1a1a1a")
+(defvar brushup-bg-1 "#1a1a1a"
+  "Background gradient level 1 (shifted toward foreground).")
 (defvar brushup-bg-1_0 "#0d0d0d" "Subtle bg shift for solaire-like effects.")
-(defvar brushup-bg-2 "#333333")
-(defvar brushup-bg-3 "#4d4d4d")
-(defvar brushup-bg-4 "#666666")
-(defvar brushup-bg-5 "#808080")
-(defvar brushup-bg-6 "#999999")
+(defvar brushup-bg-2 "#333333"
+  "Background gradient level 2 (shifted toward foreground).")
+(defvar brushup-bg-3 "#4d4d4d"
+  "Background gradient level 3 (shifted toward foreground).")
+(defvar brushup-bg-4 "#666666"
+  "Background gradient level 4 (shifted toward foreground).")
+(defvar brushup-bg-5 "#808080"
+  "Background gradient level 5 (shifted toward foreground).")
+(defvar brushup-bg-6 "#999999"
+  "Background gradient level 6 (shifted toward foreground).")
 
 ;;;; Core functions
 
