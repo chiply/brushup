@@ -203,7 +203,7 @@ Re-initializes the palette and evaluates all registered styles."
 (defun brushup--normalize-fonts ()
   "Remove italic slant from all faces."
   (mapc (lambda (face)
-          (when (face-attribute face :slant nil t)
+          (when (memq (face-attribute face :slant nil t) '(italic oblique))
             (set-face-attribute face nil :slant 'normal)))
         (face-list)))
 
