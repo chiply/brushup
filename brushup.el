@@ -5,11 +5,24 @@
 ;; Author: Charlie Holland <mister.chiply@gmail.com>
 ;; Maintainer: Charlie Holland <mister.chiply@gmail.com>
 ;; URL: https://github.com/chiply/brushup
-;; x-release-please-start-version
-;; Version: 0.1.4
-;; x-release-please-end
+;; Version: 0.1.4 ;; x-release-please-version
 ;; Package-Requires: ((emacs "29.1"))
 ;; Keywords: faces, themes
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -18,7 +31,10 @@
 ;; background, allowing package face customizations to work consistently
 ;; across themes.
 ;;
-;; Usage in package configs:
+;; To enable, add to your init file:
+;;   (brushup-mode 1)
+;;
+;; Register style forms that use brushup palette variables:
 ;;   (add-to-list 'brushup-styles
 ;;     '(set-face-attribute 'some-face nil :background brushup-bg-2))
 ;;
@@ -41,6 +57,11 @@
 (require 'color)
 
 ;;;; Configuration
+
+(defgroup brushup nil
+  "Dynamic theme-aware color palette."
+  :group 'faces
+  :prefix "brushup-")
 
 (defcustom brushup-gradient-step 7
   "Percentage step for each gradient level."
@@ -213,6 +234,11 @@ Re-initializes the palette and evaluates all registered styles."
 
 ;;;; use-package integration
 
+(defvar use-package-keywords)
+(declare-function use-package-concat "use-package-core")
+(declare-function use-package-process-keywords "use-package-core")
+(declare-function use-package-normalize-forms "use-package-core")
+
 (with-eval-after-load 'use-package-core
   (defun use-package-handler/:brushup (name _keyword arg rest state)
     "Handler for the `:brushup' use-package keyword.
@@ -220,17 +246,28 @@ NAME, ARG, REST, and STATE are as required by `use-package'."
     (use-package-concat
      (use-package-process-keywords name rest state)
      arg))
-  (defalias 'use-package-normalize/:brushup 'use-package-normalize-forms)
+  (defalias 'use-package-normalize/:brushup #'use-package-normalize-forms)
   (add-to-list 'use-package-keywords :brushup t))
 
-;;;; Hooks
+;;;; Minor mode
 
 (defun brushup--on-theme-change (_theme)
   "Re-apply brushup when the Emacs theme changes."
   (brushup))
 
-(add-hook 'emacs-startup-hook #'brushup)
-(add-hook 'enable-theme-functions #'brushup--on-theme-change)
+;;;###autoload
+(define-minor-mode brushup-mode
+  "Global minor mode for theme-aware color palette.
+When enabled, initializes the brushup palette and re-applies
+styles automatically on startup and theme changes."
+  :global t
+  :group 'brushup
+  :lighter nil
+  (if brushup-mode
+      (progn
+        (add-hook 'enable-theme-functions #'brushup--on-theme-change)
+        (brushup))
+    (remove-hook 'enable-theme-functions #'brushup--on-theme-change)))
 
 (provide 'brushup)
 
