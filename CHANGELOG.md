@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/chiply/brushup/compare/v0.1.2...v0.1.3) (2026-02-23)
+
+
+### Bug Fixes
+
+* resolve lint issues and add MELPA recipe ([dc300ea](https://github.com/chiply/brushup/commit/dc300eae2a362234260f5b253dad42aa6a19efd6))
+
 ## [0.1.2](https://github.com/chiply/brushup/compare/v0.1.1...v0.1.2) (2026-02-19)
 
 
