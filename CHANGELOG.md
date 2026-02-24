@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/chiply/brushup/compare/v0.1.4...v0.1.5) (2026-02-24)
+
+
+### Bug Fixes
+
+* revert to block-style release-please version markers ([2cd065d](https://github.com/chiply/brushup/commit/2cd065d49b16faa48bab8464ed3d8bfcf78072af))
+
 ## [0.1.4](https://github.com/chiply/brushup/compare/v0.1.3...v0.1.4) (2026-02-23)
 
 
