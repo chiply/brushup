@@ -199,7 +199,7 @@ Re-initializes the palette and evaluates all registered styles."
                           :box nil :underline nil :overline nil))
     (set-face-attribute 'mode-line-inactive nil
                         :foreground brushup-bg-6
-                        :background brushup-bg
+                        :background brushup-bg-1_0
                         :underline nil :box nil)
     (set-face-attribute 'header-line nil
                         :background brushup-bg
