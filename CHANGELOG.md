@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/chiply/brushup/compare/v0.1.5...v0.1.6) (2026-02-28)
+
+
+### Bug Fixes
+
+* use brushup-bg-1_0 for mode-line-inactive background ([6478f28](https://github.com/chiply/brushup/commit/6478f28904b25713287ff39cfad58d307fa7d4b3))
+
 ## [0.1.5](https://github.com/chiply/brushup/compare/v0.1.4...v0.1.5) (2026-02-24)
 
 
