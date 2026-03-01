@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.7](https://github.com/chiply/brushup/compare/v0.1.6...v0.1.7) (2026-03-01)
+
+
+### Bug Fixes
+
+* replace with-eval-after-load with direct require for use-package-core ([7d12ef4](https://github.com/chiply/brushup/commit/7d12ef45517d34f370ab0623a84796a7cd5efd90))
+* use imperative mood in docstring for checkdoc compliance ([e18c02e](https://github.com/chiply/brushup/commit/e18c02e075c486e6911765de3f8c1a41d3ac1fa5))
+
 ## [0.1.6](https://github.com/chiply/brushup/compare/v0.1.5...v0.1.6) (2026-02-28)
 
 
