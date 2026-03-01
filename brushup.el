@@ -209,7 +209,7 @@ NAME, ARG, REST, and STATE are as required by `use-package'."
 ;;;; Minor mode
 
 (defun brushup--on-theme-change (_theme)
-  "Re-apply brushup when the Emacs theme changes."
+  "Re-apply brushup on theme change."
   (brushup))
 
 ;;;###autoload
