@@ -190,21 +190,19 @@ Re-initializes the palette and evaluates all registered styles."
 (add-to-list 'brushup-styles '(brushup--normalize-fonts))
 
 ;;;; use-package integration
+;; `use-package' is built-in since Emacs 29.1.
 
-(defvar use-package-keywords)
-(declare-function use-package-concat "use-package-core")
-(declare-function use-package-process-keywords "use-package-core")
-(declare-function use-package-normalize-forms "use-package-core")
+(require 'use-package-core)
 
-(with-eval-after-load 'use-package-core
-  (defun use-package-handler/:brushup (name _keyword arg rest state)
-    "Handler for the `:brushup' use-package keyword.
+(defun use-package-handler/:brushup (name _keyword arg rest state)
+  "Handler for the `:brushup' `use-package' keyword.
 NAME, ARG, REST, and STATE are as required by `use-package'."
-    (use-package-concat
-     (use-package-process-keywords name rest state)
-     arg))
-  (defalias 'use-package-normalize/:brushup #'use-package-normalize-forms)
-  (add-to-list 'use-package-keywords :brushup t))
+  (use-package-concat
+   (use-package-process-keywords name rest state)
+   arg))
+
+(defalias 'use-package-normalize/:brushup #'use-package-normalize-forms)
+(add-to-list 'use-package-keywords :brushup t)
 
 ;;;; Minor mode
 
