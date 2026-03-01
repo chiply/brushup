@@ -1,5 +1,8 @@
 # brushup.el
 
+[![CI](https://github.com/chiply/brushup/actions/workflows/ci.yml/badge.svg)](https://github.com/chiply/brushup/actions/workflows/ci.yml)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 Dynamic theme-aware color palette for Emacs.
 
 Brushup generates gradient colors from your current theme's foreground and background, so face customizations work consistently across any theme. When you switch themes, all registered styles automatically update.
@@ -14,18 +17,27 @@ Brushup generates gradient colors from your current theme's foreground and backg
 
 ## Installation
 
-### With use-package and elpaca
+### With elpaca (use-package)
 
 ```elisp
 (use-package brushup
   :ensure (:host github :repo "chiply/brushup"))
 ```
 
-### With use-package and straight.el
+### With straight.el (use-package)
 
 ```elisp
 (use-package brushup
   :straight (:host github :repo "chiply/brushup"))
+```
+
+### Manual
+
+Clone the repository and add it to your `load-path`:
+
+```elisp
+(add-to-list 'load-path "/path/to/brushup")
+(require 'brushup)
 ```
 
 ## Usage
@@ -75,4 +87,4 @@ M-x brushup
 
 ## License
 
-GPL-3.0
+GPL-3.0-or-later
