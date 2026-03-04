@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/chiply/brushup/compare/v0.1.7...v0.1.8) (2026-03-04)
+
+
+### Bug Fixes
+
+* install Nix before magic-nix-cache-action in CI ([ab80240](https://github.com/chiply/brushup/commit/ab80240abe240afd9d2684f40e5d0352a2624359))
+
 ## [0.1.7](https://github.com/chiply/brushup/compare/v0.1.6...v0.1.7) (2026-03-01)
 
 
