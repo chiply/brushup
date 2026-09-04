@@ -172,10 +172,21 @@ Each form typically calls `set-face-attribute' using brushup palette variables."
 ;;;###autoload
 (defun brushup ()
   "Refresh all brushup styles.
-Re-initializes the palette and evaluates all registered styles."
+Re-initializes the palette, then evaluates all registered styles.
+
+`brushup-init' is called directly rather than being left to its place in
+`brushup-styles'.  Styles are added with `add-to-list', which PREPENDS, so
+every style registered after this file loaded ran BEFORE the palette was
+recomputed -- reading the previous theme's `brushup-fg' and friends, and
+leaving faces one theme change behind.  Callers that re-registered a style
+by appending happened to work; everything else did not."
   (interactive)
+  (brushup-init)
   (mapc #'brushup--eval-style brushup-styles))
 
+;; Kept registered for callers that evaluate `brushup-styles' themselves,
+;; and harmless now that `brushup' runs it up front: re-initializing the
+;; palette twice is idempotent.
 (add-to-list 'brushup-styles '(brushup-init))
 
 ;;;; Font normalization
