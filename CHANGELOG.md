@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.9](https://github.com/chiply/brushup/compare/v0.1.8...v0.1.9) (2026-09-05)
+
+
+### Bug Fixes
+
+* recompute the palette before evaluating styles ([72fa1ba](https://github.com/chiply/brushup/commit/72fa1bae468864da557859006c37414c2631e20e))
+* recompute the palette before evaluating styles ([d823c47](https://github.com/chiply/brushup/commit/d823c4783177a9ac9d1b98a54bf13560e7afb5ac))
+
 ## [0.1.8](https://github.com/chiply/brushup/compare/v0.1.7...v0.1.8) (2026-03-04)
 
 
